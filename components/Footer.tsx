@@ -48,8 +48,14 @@ const Footer = () => {
                 </div>
             </div>
         </div>
-        <div className="mt-16 text-center text-[#8CB59E]/40 text-sm">
-            © {new Date().getFullYear()} Widow's Den Tattoo. All rights reserved.
+        
+        <div className="mt-16 flex flex-col items-center gap-2 px-4">
+            <div className="text-[#8CB59E]/40 text-sm">
+                © {new Date().getFullYear()} Widow's Den Tattoo. All rights reserved.
+            </div>
+            <div className="text-[#8CB59E]/30 text-[10px] uppercase tracking-[0.2em]">
+                This Site Is Built And Hosted by <a href="https://vaughanms.com/" target="_blank" rel="noopener noreferrer" className="hover:text-[#CF7696] underline underline-offset-2 transition-colors">VaughanMS</a>
+            </div>
         </div>
     </footer>
   );

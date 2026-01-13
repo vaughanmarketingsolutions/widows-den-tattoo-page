@@ -1,12 +1,11 @@
 import { Artist, Testimonial } from './types';
-import { Instagram, Star, Twitter, MapPin } from 'lucide-react';
 
 export const COLORS = {
   bg: '#163023',      // Deep Forest Green
   cardDark: '#1F4030', // Dark Green for cards
   bone: '#f2f0e9',
-  orange: '#CF7696',   // Muted Rose Pink (Jeperti)
-  teal: '#8CB59E',     // Sage Green (Ryn)
+  orange: '#CF7696',   // Muted Rose Pink (Now Ryn)
+  teal: '#8CB59E',     // Sage Green (Now Jeperti)
   textMain: '#f2f0e9',
   textInverse: '#050505',
 };
@@ -15,34 +14,36 @@ export const ARTISTS: Artist[] = [
   {
     id: 'ryn',
     name: 'Ryn',
-    style: 'Neo-Traditional',
+    style: 'Anime & Neo-Traditional',
     rate: '$180/hr',
     availability: 'Booking Oct',
-    bio: "Specializing in bold lines and nature motifs. Ryn brings the outdoors to your skin with a dark twist.",
-    fullBio: "Ryn has been tattooing for over 8 years, developing a signature Neo-Traditional style that blends heavy illustrative lines with muted, earth-tone color palettes. Drawing inspiration from North Carolina's native flora and fauna, Ryn's work often features sprawling vines, nocturnal animals, and mystic symbolism. When not in the studio, Ryn is usually hiking the Appalachians or sketching in the local botanical gardens.",
-    image: 'https://picsum.photos/seed/rynprofile/400/400',
+    bio: "If you're looking for a talkative bubbly goth girl to stab you repeatedly I'm your artist!",
+    fullBio: "If you're looking for a talkative bubbly goth girl to stab you repeatedly I'm your artist! I am heavily inspired by nature and japanese culture. My style is a cross between anime and neo-traditional, but I am proficient in an array of other styles!",
+    image: 'https://i.imgur.com/i0T0zjL.png',
     portfolio: [
-      'https://picsum.photos/seed/ryntat1/300/300',
-      'https://picsum.photos/seed/ryntat2/300/300',
-      'https://picsum.photos/seed/ryntat3/300/300',
+      'https://i.imgur.com/9CJgcOY.png',
+      'https://i.imgur.com/9I60LuV.png',
+      'https://i.imgur.com/aXE3o1s.png',
     ],
-    themeColor: 'teal',
+    themeColor: 'orange',
+    instagram: 'https://www.instagram.com/ryn_ink/',
   },
   {
     id: 'jeperti',
     name: 'Jeperti',
-    style: 'Fine Line & Geometry',
+    style: 'Bold & Traditional',
     rate: '$200/hr',
     availability: 'Limited Spots',
-    bio: "Precision is key. Jeperti creates intricate geometric patterns and delicate fine line work.",
-    fullBio: "With a background in architectural design, Jeperti brings an unparalleled level of precision to her tattoo work. She specializes in sacred geometry, dot-work, and single-needle fine line tattoos. Her approach is methodical and collaborative, ensuring every angle and line complements the body's natural curvature. Jeperti believes that tattoos are permanent jewelry, meant to adorn and elevate.",
-    image: 'https://picsum.photos/seed/lauraprofile/400/400',
+    bio: "Treating people the way I would want to be treated is everything to me.",
+    fullBio: "Treating people the way I would want to be treated is everything to me. I am drawn to anything bold and colorful. I love working on re-works/cover-ups, animation and anything traditional! I also specialize in a number of different other styles!\n\n• Tattoo Artist\n• Piercer",
+    image: 'https://i.imgur.com/v86NE3g.png',
     portfolio: [
-      'https://picsum.photos/seed/lauratat1/300/300',
-      'https://picsum.photos/seed/lauratat2/300/300',
-      'https://picsum.photos/seed/lauratat3/300/300',
+      'https://i.imgur.com/Wfb3no2.png',
+      'https://i.imgur.com/jkxusvf.png',
+      'https://i.imgur.com/AmxIyAL.png',
     ],
-    themeColor: 'orange',
+    themeColor: 'teal',
+    facebook: 'https://www.facebook.com/jepertitattoos/',
   },
 ];
 

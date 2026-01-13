@@ -1,8 +1,8 @@
 import React from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Artist } from '../types';
 import BrutalButton from './ui/BrutalButton';
-import { ArrowRight, Instagram } from 'lucide-react';
+import { ArrowRight, Instagram, Facebook } from 'lucide-react';
 
 interface Props {
   artist: Artist;
@@ -13,52 +13,50 @@ interface Props {
 
 const ArtistShowcase: React.FC<Props> = ({ artist, reversed = false, onBook, onViewGallery }) => {
   const bgClass = artist.themeColor === 'teal' ? 'bg-[#8CB59E]' : 'bg-[#CF7696]';
-  const textClass = 'text-black'; // Contrast on colors is black
   
-  // Card Container Variants
+  // Card Container Variants - Straightened out (rotate: 0)
   const cardVariants = {
-    offscreen: { y: 100, opacity: 0, rotate: reversed ? -2 : 2 },
+    offscreen: { y: 50, opacity: 0, rotate: 0 },
     onscreen: { 
       y: 0, 
       opacity: 1, 
-      rotate: reversed ? -2 : 2,
-      transition: { type: "spring", bounce: 0.4, duration: 0.8 }
+      rotate: 0,
+      transition: { type: "spring", bounce: 0.2, duration: 0.6 }
     }
   };
 
   return (
-    <section className="py-24 px-4 md:px-8 relative z-10">
+    <section className="py-12 md:py-16 px-4 md:px-8 relative z-10">
       <motion.div 
         initial="offscreen"
         whileInView="onscreen"
-        viewport={{ once: true, amount: 0.3 }}
-        className="max-w-6xl mx-auto"
+        viewport={{ once: true, amount: 0.2 }}
+        className="max-w-5xl mx-auto"
       >
-        {/* Main "Artist of the Day" style card */}
         <motion.div 
           variants={cardVariants}
-          className={`relative rounded-[2.5rem] p-6 md:p-12 ${artist.themeColor === 'bone' ? 'bg-[#f2f0e9]' : 'bg-[#f2f0e9]'} text-[#050505] overflow-hidden`}
+          className="relative rounded-[1.5rem] md:rounded-[2.5rem] p-5 md:p-10 bg-[#f2f0e9] text-[#050505] overflow-hidden shadow-xl"
         >
-          <div className="flex flex-col lg:flex-row gap-12 items-center">
+          <div className={`flex flex-col lg:flex-row gap-8 md:gap-12 items-center ${reversed ? 'lg:flex-row-reverse' : ''}`}>
             
             {/* Left/Image Section */}
-            <div className={`w-full lg:w-1/3 flex flex-col gap-6 ${reversed ? 'lg:order-2' : ''}`}>
-              <div className="relative group">
-                <div className="absolute inset-0 bg-black rounded-[2rem] translate-y-2 translate-x-2 transition-transform duration-300 group-hover:translate-x-4 group-hover:translate-y-4"></div>
-                <div className="relative rounded-[2rem] overflow-hidden border-4 border-black bg-black aspect-square">
-                  <img src={artist.image} alt={artist.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
+            <div className="w-full lg:w-2/5 flex flex-col gap-4">
+              <div className="relative">
+                <div className="absolute inset-0 bg-black rounded-[1.5rem] md:rounded-[2rem] translate-y-1.5 translate-x-1.5"></div>
+                <div className="relative rounded-[1.5rem] md:rounded-[2rem] overflow-hidden border-4 border-black bg-black aspect-square">
+                  <img src={artist.image} alt={artist.name} className="w-full h-full object-cover" />
                 </div>
                 {/* Sticker badge */}
-                 <div className="absolute -top-4 -right-4 bg-black text-[#f2f0e9] rounded-full w-20 h-20 flex items-center justify-center font-display text-xl rotate-12 z-20 border-4 border-[#f2f0e9]">
+                 <div className="absolute -top-3 -right-3 bg-black text-[#f2f0e9] rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center font-display text-lg md:text-xl rotate-12 z-20 border-4 border-[#f2f0e9]">
                   {artist.name}
                 </div>
               </div>
               
               <div className="hidden lg:block">
-                 <h3 className="font-display text-4xl mb-2">WORKS</h3>
+                 <h3 className="font-display text-2xl mb-2">PORTFOLIO</h3>
                  <div className="grid grid-cols-3 gap-2">
                     {artist.portfolio.map((img, i) => (
-                      <div key={i} className="rounded-xl overflow-hidden border-2 border-black aspect-square cursor-pointer hover:scale-105 transition-transform">
+                      <div key={i} className="rounded-lg overflow-hidden border-2 border-black aspect-square">
                         <img src={img} alt="work" className="w-full h-full object-cover" />
                       </div>
                     ))}
@@ -67,37 +65,52 @@ const ArtistShowcase: React.FC<Props> = ({ artist, reversed = false, onBook, onV
             </div>
 
             {/* Right/Info Section */}
-            <div className="w-full lg:w-2/3 flex flex-col gap-8">
-              <div className="flex justify-between items-start border-b-4 border-black pb-6">
+            <div className="w-full lg:w-3/5 flex flex-col gap-6">
+              <div className="flex justify-between items-start border-b-2 border-black pb-4">
                 <div>
-                    <h2 className="font-display text-6xl md:text-8xl leading-none mb-2">{artist.name.toUpperCase()}</h2>
-                    <p className="font-serif italic text-xl opacity-80">"{artist.bio}"</p>
+                    <h2 className="font-display text-5xl md:text-7xl leading-none mb-1">{artist.name.toUpperCase()}</h2>
+                    <p className="font-serif italic text-base md:text-lg opacity-80 leading-snug">"{artist.bio}"</p>
                 </div>
-                <Instagram className="w-10 h-10 border-2 border-black rounded-full p-1 hover:bg-black hover:text-white transition-colors cursor-pointer" />
+                {artist.instagram && (
+                  <a 
+                    href={artist.instagram} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="shrink-0"
+                  >
+                    <Instagram className="w-8 h-8 border-2 border-black rounded-full p-1 hover:bg-black hover:text-white transition-colors cursor-pointer" />
+                  </a>
+                )}
+                {artist.facebook && (
+                  <a 
+                    href={artist.facebook} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="shrink-0"
+                  >
+                    <Facebook className="w-8 h-8 border-2 border-black rounded-full p-1 hover:bg-black hover:text-white transition-colors cursor-pointer" />
+                  </a>
+                )}
               </div>
 
-              {/* Stats Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                 <div className="bg-black text-[#f2f0e9] p-6 rounded-[2rem] flex flex-col justify-between min-h-[160px] hover:-translate-y-2 transition-transform duration-300">
-                    <span className="font-bold opacity-60 uppercase tracking-widest text-xs">Style</span>
-                    <span className="font-display text-4xl">{artist.style}</span>
+              {/* Stats Grid - Simplified and Rate Removed */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                 <div className="bg-black text-[#f2f0e9] p-5 rounded-[1.5rem] flex flex-col justify-between min-h-[100px] hover:scale-[1.02] transition-transform duration-300">
+                    <span className="font-bold opacity-60 uppercase tracking-widest text-[10px]">Specialization</span>
+                    <span className="font-display text-3xl">{artist.style}</span>
                  </div>
                  
-                 <div className={`${bgClass} border-4 border-black p-6 rounded-[2rem] flex flex-col justify-between min-h-[160px] text-black hover:-translate-y-2 transition-transform duration-300`}>
-                    <div className="flex justify-between items-start">
-                        <span className="font-bold opacity-70 uppercase tracking-widest text-xs">Rate</span>
-                        <span className="font-display text-2xl">{artist.rate}</span>
-                    </div>
-                     <span className="font-display text-3xl">{artist.availability}</span>
+                 <div className={`${bgClass} border-4 border-black p-5 rounded-[1.5rem] flex flex-col justify-between min-h-[100px] text-black hover:scale-[1.02] transition-transform duration-300`}>
+                    <span className="font-bold opacity-70 uppercase tracking-widest text-[10px]">Availability</span>
+                    <span className="font-display text-3xl">{artist.availability}</span>
                  </div>
               </div>
 
-              {/* Mobile Portfolio (Visible only on small screens) */}
+              {/* Mobile Portfolio */}
                <div className="lg:hidden">
-                 <h3 className="font-display text-3xl mb-2">Selected Works</h3>
-                 <div className="flex gap-2 overflow-x-auto pb-4 no-scrollbar">
+                 <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
                     {artist.portfolio.map((img, i) => (
-                      <div key={i} className="min-w-[100px] rounded-xl overflow-hidden border-2 border-black aspect-square">
+                      <div key={i} className="min-w-[80px] rounded-lg overflow-hidden border-2 border-black aspect-square">
                         <img src={img} alt="work" className="w-full h-full object-cover" />
                       </div>
                     ))}
@@ -105,25 +118,23 @@ const ArtistShowcase: React.FC<Props> = ({ artist, reversed = false, onBook, onV
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-col md:flex-row gap-4 mt-8">
-                  {/* "Book With Name" - Fills space on left */}
+              <div className="flex flex-col md:flex-row gap-3 mt-4">
                   <BrutalButton 
                     variant={artist.themeColor === 'teal' ? 'teal' : 'orange'} 
-                    size="lg" 
-                    className="flex-1 w-full flex items-center justify-center gap-2 text-2xl md:text-3xl"
+                    size="md" 
+                    className="flex-1 w-full flex items-center justify-center gap-2 text-xl"
                     onClick={onBook}
                   >
-                     Book With {artist.name}
+                     Book Appointment
                   </BrutalButton>
 
-                  {/* "View Gallery" - Replaces original button, sits on right */}
                   <BrutalButton 
                     variant="black" 
-                    size="lg" 
+                    size="md" 
                     className="w-full md:w-auto flex items-center justify-center gap-2"
                     onClick={onViewGallery}
                   >
-                     View Gallery <ArrowRight className="w-5 h-5" />
+                     View Work <ArrowRight className="w-4 h-4" />
                   </BrutalButton>
               </div>
 

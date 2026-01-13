@@ -9,6 +9,8 @@ export interface Artist {
   image: string;
   portfolio: string[];
   themeColor: string; // 'teal' | 'orange' | 'bone'
+  instagram?: string;
+  facebook?: string;
 }
 
 export interface Testimonial {

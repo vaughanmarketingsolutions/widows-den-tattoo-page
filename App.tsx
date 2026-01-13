@@ -7,13 +7,14 @@ import LocationHours from './components/LocationHours';
 import ArtistsPage from './components/ArtistsPage';
 import GalleryPage from './components/GalleryPage';
 import BookingPage from './components/BookingPage';
+import PricingPage from './components/PricingPage';
 import Footer from './components/Footer';
 import { ARTISTS } from './constants';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 
 const App: React.FC = () => {
   const { scrollYProgress } = useScroll();
-  const [view, setView] = useState<'home' | 'artists' | 'gallery' | 'booking'>('home');
+  const [view, setView] = useState<'home' | 'artists' | 'gallery' | 'booking' | 'pricing'>('home');
   const [preSelectedArtist, setPreSelectedArtist] = useState<string | null>(null);
   
   // Parallax background texture
@@ -52,7 +53,7 @@ const App: React.FC = () => {
         </svg>
       </motion.div>
 
-      {/* Conditionally hide Navbar on booking page for immersion, or keep it. Keeping it for navigation safety. */}
+      {/* Navigation */}
       {view !== 'booking' && <Navbar setView={setView} onBook={() => handleBook()} />}
       
       <main className="relative z-10">
@@ -69,9 +70,9 @@ const App: React.FC = () => {
               <Hero onViewGallery={() => setView('gallery')} onBook={() => handleBook()} />
               
               {/* Artists Section on Home */}
-              <div className="py-20 flex flex-col gap-12">
-                  <div className="text-center">
-                      <span className="text-[#8CB59E] uppercase tracking-widest text-sm font-bold">The Talent</span>
+              <div className="py-12 md:py-20 flex flex-col gap-0">
+                  <div className="text-center mb-4 md:mb-8">
+                      <span className="text-[#CF7696] uppercase tracking-[0.3em] text-xs md:text-sm font-bold drop-shadow-sm">The Talent</span>
                   </div>
                   {ARTISTS.map((artist, index) => (
                   <ArtistShowcase 
@@ -91,14 +92,14 @@ const App: React.FC = () => {
               <LocationHours />
               
               {/* CTA Section */}
-              <section className="py-32 px-4 text-center bg-[#f2f0e9] text-black rounded-t-[3rem] relative z-20 mt-12">
-                   <h2 className="font-display text-6xl md:text-9xl mb-8 leading-none">READY FOR<br/>NEW INK?</h2>
-                   <p className="max-w-xl mx-auto text-xl mb-12 opacity-80 font-serif">
-                      We accept walk-ins on weekends and appointments throughout the week. Let's make something permanent.
+              <section className="py-24 md:py-32 px-4 text-center bg-[#f2f0e9] text-[#163023] rounded-t-[2rem] md:rounded-t-[3rem] relative z-20 mt-12 border-t-8 border-[#CF7696]">
+                   <h2 className="font-display text-5xl md:text-9xl mb-8 leading-none">READY FOR<br/><span className="text-[#CF7696]">NEW INK?</span></h2>
+                   <p className="max-w-xl mx-auto text-lg md:text-xl mb-10 md:mb-12 opacity-80 font-serif italic px-4">
+                      We are an appointment-only studio. Let's make something permanent.
                    </p>
                    <button 
                     onClick={() => handleBook()}
-                    className="bg-black text-[#f2f0e9] text-2xl px-12 py-6 rounded-full font-display uppercase tracking-wider hover:scale-105 transition-transform duration-300 shadow-2xl"
+                    className="bg-[#CF7696] text-black text-xl md:text-2xl px-10 md:px-12 py-5 md:py-6 rounded-full font-display uppercase tracking-wider hover:scale-105 transition-all duration-300 shadow-[0_10px_40px_rgba(207,118,150,0.4)] border-4 border-black"
                    >
                       Schedule Consultation
                    </button>
@@ -129,6 +130,19 @@ const App: React.FC = () => {
               transition={{ duration: 0.4 }}
             >
               <GalleryPage />
+            </motion.div>
+          )}
+
+          {view === 'pricing' && (
+            <motion.div
+              key="pricing"
+              variants={pageVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={{ duration: 0.4 }}
+            >
+              <PricingPage />
             </motion.div>
           )}
 

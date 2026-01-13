@@ -8,8 +8,22 @@ const Footer = () => {
             <div>
                 <h2 className="font-display text-5xl text-[#f2f0e9] mb-4">WIDOW'S DEN TATTOO</h2>
                 <div className="flex gap-4 text-[#8CB59E]">
-                    <a href="#" className="hover:text-[#CF7696] transition-colors"><Instagram /></a>
-                    <a href="#" className="hover:text-[#CF7696] transition-colors"><Mail /></a>
+                    <a 
+                      href="https://www.instagram.com/widowsdentattoo/" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="hover:text-[#CF7696] transition-colors"
+                      aria-label="Follow us on Instagram"
+                    >
+                      <Instagram />
+                    </a>
+                    <a 
+                      href="mailto:widowsdentattoo@gmail.com" 
+                      className="hover:text-[#CF7696] transition-colors"
+                      aria-label="Email us"
+                    >
+                      <Mail />
+                    </a>
                 </div>
             </div>
             
@@ -18,18 +32,18 @@ const Footer = () => {
                     <h3 className="text-[#f2f0e9] font-bold mb-4 uppercase tracking-wider">Visit Us</h3>
                     <p className="flex items-start gap-2 mb-2">
                         <MapPin size={18} className="mt-1 text-[#CF7696]" />
-                        Downtown<br/>Angier, NC 27501
+                        149 Logan Ct Suite C<br/>Angier, NC 27501
                     </p>
                 </div>
                 <div>
                     <h3 className="text-[#f2f0e9] font-bold mb-4 uppercase tracking-wider">Contact</h3>
                     <p className="flex items-center gap-2 mb-2">
                         <Phone size={18} className="text-[#8CB59E]" />
-                        (704) 555-0198
+                        (919)-820-8079
                     </p>
                     <p className="flex items-center gap-2">
                         <Mail size={18} className="text-[#8CB59E]" />
-                        booking@widowsden.com
+                        widowsdentattoo@gmail.com
                     </p>
                 </div>
             </div>

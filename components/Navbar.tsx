@@ -4,9 +4,19 @@ import { Menu, X } from 'lucide-react';
 import BrutalButton from './ui/BrutalButton';
 
 interface NavbarProps {
-  setView: (view: 'home' | 'artists' | 'gallery') => void;
+  setView: (view: 'home' | 'artists' | 'gallery' | 'pricing') => void;
   onBook: () => void;
 }
+
+const NavItem = ({ children, onClick }: React.PropsWithChildren<{ onClick: () => void }>) => (
+  <button 
+    onClick={onClick} 
+    className="group relative hover:text-[#CF7696] transition-colors duration-300"
+  >
+    {children}
+    <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#CF7696] transition-all duration-300 group-hover:w-full"></span>
+  </button>
+);
 
 const Navbar: React.FC<NavbarProps> = ({ setView, onBook }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,7 +32,7 @@ const Navbar: React.FC<NavbarProps> = ({ setView, onBook }) => {
     }
   });
 
-  const handleNav = (view: 'home' | 'artists' | 'gallery') => {
+  const handleNav = (view: 'home' | 'artists' | 'gallery' | 'pricing') => {
     setView(view);
     setIsOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -48,24 +58,24 @@ const Navbar: React.FC<NavbarProps> = ({ setView, onBook }) => {
         <div className="max-w-7xl mx-auto flex justify-between items-center">
             <button 
               onClick={() => handleNav('home')}
-              className="text-2xl font-display tracking-widest uppercase flex items-center gap-3 hover:scale-105 transition-transform"
+              className="text-2xl font-display tracking-widest uppercase flex items-center gap-3 hover:scale-105 transition-transform group"
             >
               <img 
                   src="https://i.imgur.com/X6ThXQ1.png" 
                   alt="Widow's Den Tattoo Logo" 
-                  className="w-10 h-10 object-contain rounded-full bg-[#f2f0e9]"
+                  className="w-10 h-10 object-contain rounded-full bg-[#f2f0e9] border-2 border-transparent group-hover:border-[#CF7696] transition-colors"
               />
               Widow's Den Tattoo
             </button>
 
             <div className="hidden md:flex gap-8 items-center font-semibold text-sm tracking-wide uppercase">
-                <button onClick={() => handleNav('artists')} className="hover:underline decoration-2 underline-offset-4">Artists</button>
-                <button onClick={() => handleNav('gallery')} className="hover:underline decoration-2 underline-offset-4">Gallery</button>
-                <button onClick={() => handleNav('home')} className="hover:underline decoration-2 underline-offset-4">FAQ</button>
-                <BrutalButton size="sm" variant="bone" onClick={handleBook}>Book Now</BrutalButton>
+                <NavItem onClick={() => handleNav('artists')}>Artists</NavItem>
+                <NavItem onClick={() => handleNav('gallery')}>Gallery</NavItem>
+                <NavItem onClick={() => handleNav('pricing')}>Pricing</NavItem>
+                <BrutalButton size="sm" variant="orange" onClick={handleBook}>Book Now</BrutalButton>
             </div>
 
-            <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
+            <button className="md:hidden hover:text-[#CF7696] transition-colors" onClick={() => setIsOpen(!isOpen)}>
                 {isOpen ? <X /> : <Menu />}
             </button>
         </div>
@@ -84,8 +94,8 @@ const Navbar: React.FC<NavbarProps> = ({ setView, onBook }) => {
                 <div className="p-6 flex flex-col gap-6 md:hidden">
                     <button onClick={() => handleNav('artists')} className="text-left text-2xl font-display hover:text-[#CF7696] transition-colors">Artists</button>
                     <button onClick={() => handleNav('gallery')} className="text-left text-2xl font-display hover:text-[#CF7696] transition-colors">Gallery</button>
-                    <button onClick={() => handleNav('home')} className="text-left text-2xl font-display hover:text-[#CF7696] transition-colors">FAQ</button>
-                    <BrutalButton className="w-full" variant="bone" onClick={handleBook}>Book Now</BrutalButton>
+                    <button onClick={() => handleNav('pricing')} className="text-left text-2xl font-display hover:text-[#CF7696] transition-colors">Pricing</button>
+                    <BrutalButton className="w-full" variant="orange" onClick={handleBook}>Book Now</BrutalButton>
                 </div>
             </motion.div>
         )}

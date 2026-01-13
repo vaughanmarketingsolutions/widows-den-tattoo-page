@@ -11,7 +11,7 @@ interface NavbarProps {
 const NavItem = ({ children, onClick }: React.PropsWithChildren<{ onClick: () => void }>) => (
   <button 
     onClick={onClick} 
-    className="group relative hover:text-[#CF7696] transition-colors duration-300"
+    className="group relative hover:text-[#CF7696] transition-colors duration-300 whitespace-nowrap"
   >
     {children}
     <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#CF7696] transition-all duration-300 group-hover:w-full"></span>
@@ -55,19 +55,21 @@ const Navbar: React.FC<NavbarProps> = ({ setView, onBook }) => {
     >
       {/* Header Content */}
       <div className="relative z-50 px-6 py-4 text-[#f2f0e9]">
-        <div className="max-w-7xl auto flex justify-between items-center">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+            {/* Logo/Brand Section - Left Side */}
             <button 
               onClick={() => handleNav('home')}
-              className="text-xl sm:text-2xl font-display tracking-widest uppercase flex items-center gap-3 hover:scale-105 transition-transform group text-left"
+              className="text-xl sm:text-2xl font-display tracking-widest uppercase flex items-center gap-3 hover:scale-105 transition-transform group text-left shrink-0"
             >
               <img 
                   src="https://i.imgur.com/X6ThXQ1.png" 
                   alt="Widow's Den Tattoo Logo" 
                   className="w-10 h-10 object-contain rounded-full bg-[#f2f0e9] border-2 border-transparent group-hover:border-[#CF7696] transition-colors shrink-0"
               />
-              <span className="inline-block">Widow's Den Tattoo</span>
+              <span className="inline-block whitespace-nowrap">Widow's Den Tattoo</span>
             </button>
 
+            {/* Desktop Navigation Items - Right Side */}
             <div className="hidden md:flex gap-8 items-center font-semibold text-sm tracking-wide uppercase">
                 <NavItem onClick={() => handleNav('artists')}>Artists</NavItem>
                 <NavItem onClick={() => handleNav('gallery')}>Gallery</NavItem>
@@ -75,7 +77,8 @@ const Navbar: React.FC<NavbarProps> = ({ setView, onBook }) => {
                 <BrutalButton size="sm" variant="orange" onClick={handleBook}>Book Now</BrutalButton>
             </div>
 
-            <button className="md:hidden hover:text-[#CF7696] transition-colors" onClick={() => setIsOpen(!isOpen)}>
+            {/* Mobile Menu Trigger - Right Side */}
+            <button className="md:hidden hover:text-[#CF7696] transition-colors shrink-0" onClick={() => setIsOpen(!isOpen)}>
                 {isOpen ? <X /> : <Menu />}
             </button>
         </div>

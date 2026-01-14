@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import BrutalButton from './ui/BrutalButton';
+import { ExternalLink } from 'lucide-react';
 
 const GALLERY_ITEMS = [
   // Ryn's Work
@@ -11,16 +13,19 @@ const GALLERY_ITEMS = [
   { id: 106, src: 'https://i.imgur.com/x34LYOt.png', artist: 'Ryn' },
   { id: 107, src: 'https://i.imgur.com/zyMF0JW.png', artist: 'Ryn' },
   { id: 108, src: 'https://i.imgur.com/p1DhgcQ.png', artist: 'Ryn' },
+  { id: 109, src: 'https://i.imgur.com/MBVw5BA.png', artist: 'Ryn' },
+  { id: 110, src: 'https://i.imgur.com/4kpDN4U.png', artist: 'Ryn' },
+  { id: 111, src: 'https://i.imgur.com/TdklXoB.png', artist: 'Ryn' },
+  { id: 112, src: 'https://i.imgur.com/SQqthwX.png', artist: 'Ryn' },
 
   // Jeperti's Work
-  { id: 201, src: 'https://i.imgur.com/Wfb3no2.png', artist: 'Jeperti' },
-  { id: 202, src: 'https://i.imgur.com/jkxusvf.png', artist: 'Jeperti' },
-  { id: 203, src: 'https://i.imgur.com/AmxIyAL.png', artist: 'Jeperti' },
-  { id: 204, src: 'https://i.imgur.com/Ch8jfLI.png', artist: 'Jeperti' },
-  { id: 205, src: 'https://i.imgur.com/BOJKfE1.png', artist: 'Jeperti' },
-  { id: 206, src: 'https://i.imgur.com/AuqPsYX.png', artist: 'Jeperti' },
-  { id: 207, src: 'https://i.imgur.com/vNCwnwe.png', artist: 'Jeperti' },
-  { id: 208, src: 'https://i.imgur.com/Wfhhq1g.png', artist: 'Jeperti' },
+  { id: 201, src: 'https://i.imgur.com/V9GqYu2.png', artist: 'Jeperti' },
+  { id: 202, src: 'https://i.imgur.com/Jb6zS0i.png', artist: 'Jeperti' },
+  { id: 203, src: 'https://i.imgur.com/zj5K47J.png', artist: 'Jeperti' },
+  { id: 204, src: 'https://i.imgur.com/LRbcvym.png', artist: 'Jeperti' },
+  { id: 205, src: 'https://i.imgur.com/tFJzjM6.png', artist: 'Jeperti' },
+  { id: 206, src: 'https://i.imgur.com/XYwEiQW.png', artist: 'Jeperti' },
+  { id: 207, src: 'https://i.imgur.com/niWNYhU.png', artist: 'Jeperti' },
 ];
 
 const GalleryPage: React.FC = () => {
@@ -91,10 +96,48 @@ const GalleryPage: React.FC = () => {
                 </AnimatePresence>
             </div>
 
+            {/* Full Portfolio CTA Section */}
+            <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="max-w-3xl mx-auto mt-24 mb-12 p-8 md:p-12 text-center bg-[#1F4030] border border-white/5 rounded-[2rem] shadow-2xl relative overflow-hidden"
+            >
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#8CB59E] via-[#CF7696] to-[#8CB59E]" />
+                
+                <h3 className="font-display text-4xl md:text-5xl text-[#f2f0e9] mb-4">Want to see more?</h3>
+                <p className="text-[#a3c9c7] text-lg font-serif italic mb-10">
+                    This is just a selection of our work. If you'd like to view our full extended portfolios, click below:
+                </p>
+                
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a 
+                        href="https://photos.google.com/share/AF1QipO4rKc7WuyId_NAXkgranX86WxEFGszDZGY0FMZyWHBZXj8CIYTIsKjIPJwOrZhbA?key=YkNQR0I5cVhscVU5UDBEeno2elNPMXNYNmk0ZlZR" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex-1"
+                    >
+                        <BrutalButton variant="teal" className="w-full flex items-center justify-center gap-2">
+                            Jeperti's Full Work <ExternalLink size={18} />
+                        </BrutalButton>
+                    </a>
+                    <a 
+                        href="https://photos.google.com/share/AF1QipOCkPgsbntQRH6jG40rkUk5_L9h3JdEarruJI_WJbSNh0qzeXtIRVPDQiN0UK9rZQ?key=UkNoRmhOZFdDOUZ1ZDAzMy1lLTB1OXNFS0o5SVB3" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex-1"
+                    >
+                        <BrutalButton variant="orange" className="w-full flex items-center justify-center gap-2">
+                            Ryn's Full Work <ExternalLink size={18} />
+                        </BrutalButton>
+                    </a>
+                </div>
+            </motion.div>
+
             {/* Decorative Bottom Area */}
-            <div className="text-center mt-16 pb-8">
+            <div className="text-center pb-8">
                 <p className="text-[#a3c9c7]/40 text-xs uppercase tracking-[0.4em]">
-                    End of Portfolio
+                    Widow's Den Tattoo Portfolio
                 </p>
             </div>
             

@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Phone, Mail, Instagram } from 'lucide-react';
+import { MapPin, Phone, Mail, Instagram, Facebook } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -18,11 +18,13 @@ const Footer = () => {
                       <Instagram />
                     </a>
                     <a 
-                      href="mailto:widowsdentattoo@gmail.com" 
+                      href="https://www.facebook.com/p/Widows-Den-Tattoo-61561725042718/" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
                       className="hover:text-[#CF7696] transition-colors"
-                      aria-label="Email us"
+                      aria-label="Follow us on Facebook"
                     >
-                      <Mail />
+                      <Facebook />
                     </a>
                 </div>
             </div>
